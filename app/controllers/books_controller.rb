@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  
+  before_action :authenticate_user!
   before_action :find_book, except: %i[index new create]
 
   def index
