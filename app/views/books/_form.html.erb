@@ -1,0 +1,11 @@
+<%= form_with(model: book) do |form| %>
+  <div>
+    <%= form.label :title, "書名" %>
+    <%= form.text_field :title, autocomplete: :off %>
+  </div>
+  <div>
+    <%= form.label :price, "售價" %>
+    <%= form.number_field :price %>
+  </div>
+  <%= form.submit %>
+<% end %>

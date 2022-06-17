@@ -1,0 +1,7 @@
+<% book.each do |book| %>
+  <%= book.title %>
+  <%= link_to '檢視', book_path(book) %>
+  
+  <%= link_to '刪除', book_path(book), method: :delete, data: {confirm: "您確定嗎？刪除不可復原"} %>
+  <br>
+<% end %>
