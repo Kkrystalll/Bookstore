@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise', '~> 4.2'
 gem 'newebpay-turbo', '~> 0.2.5'
 gem 'dotenv', '~> 2.7', '>= 2.7.6'
+gem "font_awesome5_rails", "~> 1.5"
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

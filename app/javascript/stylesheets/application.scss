@@ -3,3 +3,18 @@
 @import "tailwindcss/utilities";
 @import "./form.scss";
 @import "./navbar.scss";
+
+.notice {
+  @apply absolute top-24 right-5 flex items-center bg-grassGreen py-2 px-4 rounded text-white hover:bg-mint transition transform duration-1000;
+}
+
+.alert {
+  @apply absolute top-24 right-5 flex items-center bg-vermilion py-2 px-4 rounded text-white hover:bg-paleVermilion transition transform duration-1000;
+  .card {
+    max-width: 100%;
+  }
+
+  .notice-button {
+    @apply text-2xl ml-2;
+  }
+}
