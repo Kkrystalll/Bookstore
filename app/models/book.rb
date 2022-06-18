@@ -1,6 +1,6 @@
 class Book < ApplicationRecord
   validates :title, presence: true, uniqueness: true
-  validates :price, numericality: { genter_then: 0 }
+  validates :price, presence: true, numericality: { greater_than: 0 }
 
   belongs_to :user
   has_many :book_orders

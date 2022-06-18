@@ -1,3 +1,9 @@
+<% if book.errors.any? %>
+  <% book.errors.full_messages.each do |message| %>
+    <p><%= message %></p>
+  <% end %>
+<% end %>
+
 <%= form_with(model: book) do |form| %>
   <div>
     <%= form.label :title, "書名" %>
