@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  start_date: 2022-06-18 14:34:27
+  expiry_date: 2022-06-18 14:34:27
+  discount_method: 1
+
+two:
+  title: MyString
+  start_date: 2022-06-18 14:34:27
+  expiry_date: 2022-06-18 14:34:27
+  discount_method: 1
