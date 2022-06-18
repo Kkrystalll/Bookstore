@@ -1,0 +1,13 @@
+<nav class="navbar">
+  <%= link_to 'Bookstore', root_path, class: "logo" %>
+  <% if current_user %>
+    <div>
+    <%= link_to('登出', destroy_user_session_path, :method => :delete, class: "nav-button") %> 
+    </div>
+  <% else %>
+    <div>
+    <%= link_to('註冊', new_registration_path(:user), class: "nav-button") %> 
+    <%= link_to('登入', new_session_path(:user), class: "nav-button") %>
+    </div>
+  <% end %>
+</nav>
