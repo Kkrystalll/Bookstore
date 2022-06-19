@@ -3,7 +3,7 @@ class Coupon < ApplicationRecord
   validates :discount_method, presence: true
   validates :piece, presence: true, numericality: { greater_than: 0 }
 
-  has_many :orders
+  belongs_to :order
   has_many :user_coupons
   has_many :users, through: :user_coupons
 
@@ -11,6 +11,13 @@ class Coupon < ApplicationRecord
 
   def self.discount_method_select
     discount_methods.keys.map { |key| [key, key] }
+  end
+
+  def self.all_status
+    [
+      %w[發佈 published],
+      %w[關閉 closed]
+    ]
   end
 
 end

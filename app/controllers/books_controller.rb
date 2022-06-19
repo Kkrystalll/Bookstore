@@ -3,14 +3,17 @@ class BooksController < ApplicationController
   before_action :find_book, except: %i[index new create]
 
   def index
-    @books = current_user.books.all
+    authorize :book
+    @books = Book.all
   end
   
   def new
+    authorize :book
     @book = current_user.books.new
   end
   
   def create
+    authorize :book
     @book = current_user.books.new(book_params)
 
     if @book.save
@@ -20,16 +23,12 @@ class BooksController < ApplicationController
     end
   end
   
-  def show
-    
-  end
-  
   def edit
-    
+    authorize :book
   end
   
   def update
-    
+    authorize :book
     if @book.update(book_params)
       redirect_to books_path, notice: "修改成功"
     else
@@ -38,7 +37,7 @@ class BooksController < ApplicationController
   end
   
   def destroy
-
+    authorize :book
     @book.destroy
     redirect_to books_path, notice: "刪除成功"
   end
