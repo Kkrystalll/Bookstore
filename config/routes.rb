@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
   
   devise_for :users
-  resources :orders, only: [:index, :create, :show, :update, :destroy ] 
+  resources :orders, only: [:index, :create, :show, :update, :destroy ] do
+    collection do
+      post :return_response
+    end
+  end
+
   resources :books, except: [:show ]
   resources :coupons, only: [:index, :new, :create ]
+  
 
   namespace :api do
     namespace :v1 do

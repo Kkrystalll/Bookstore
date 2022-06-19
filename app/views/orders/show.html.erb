@@ -1,4 +1,4 @@
-<%# form.with url: "https://ccore.newebpay.com/MPG/mpg_gateway", method: :post do |form| >
+<% form.with url: "https://ccore.newebpay.com/MPG/mpg_gateway", method: :post do |form| >
   <% @form_info.each do |key, value|>
     <%= form.hidden_field :MerchantID, { value: @form_info[:MerchantID] } >
 
