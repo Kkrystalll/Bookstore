@@ -16,4 +16,14 @@ class Api::V1::OrdersController < ApplicationController
       params: params
     }
   end
+
+  def remove_to_cart
+    order = Order.find(params[:id])
+    order.book_orders.find_by(book_id: params[:book_id]).destroy
+
+    render json: {
+      message: '移除訂單成功！',
+      params: params
+    }
+  end
 end

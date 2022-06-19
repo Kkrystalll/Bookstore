@@ -7,8 +7,14 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resource :orders, only: [] do
-        post :add_to_cart
+      resources :orders, only: [] do
+        collection do
+          post :add_to_cart
+        end
+
+        member do
+          delete :remove_to_cart
+        end
       end
     end
   end

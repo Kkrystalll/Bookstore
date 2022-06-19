@@ -1,6 +1,11 @@
 class OrdersController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:show]
 
+  def index
+    @order = current_user.order
+    @books = @order.books
+  end
+
   def show
     # payment = Newebpay::Payment.new(
     #       order_number: Order.find(params[:id]),
