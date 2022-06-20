@@ -16,7 +16,7 @@ export default class extends Controller {
 
     Rails.ajax({
       type: "post",
-      url: `/api/v1/orders/add_to_cart`,
+      url: "/api/v1/orders/add_to_cart",
       data,
       success: ({ message }) => {
         const header = document.querySelector(".header")

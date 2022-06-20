@@ -2,7 +2,8 @@
   <%= book.title %>
   <%= book.price %>
   
-  <button data-controller="order" data-action="click->order#add_to_cart" data-book-id="<%= book.id %>" data-user-id="<%= current_user.id %>">加入訂單</button>
+  <%= link_to '加入訂單', "#", data: { controller: "order", action: "click->order#add_to_cart", "book-id": book.id, "user-id": current_user.id } %>
+  
   <% if policy(:book).edit? %>
     <%= link_to '修改', edit_book_path(book) %>
     <%= link_to '刪除', book_path(book), method: :delete, data: {confirm: "您確定嗎？刪除不可復原"} %>

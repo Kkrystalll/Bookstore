@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index]
 
   def index
-    @order = current_user.order
+    @order = current_user.orders.find_by(status: "pended")
     @books = @order.books
     @amount = @books.pluck(:price).sum
     @order.update(amount: @amount)
@@ -17,6 +17,14 @@ class OrdersController < ApplicationController
   end
 
   def return_response
-    redirect_to root_path, notice: "付款成功"
+    response = Newebpay::Mpgresponse.new(params[:TradeInfo])
+    order= Order.find(response.result["MerchantOrderNo"])
+
+    if response.status === 'SUCCESS'
+      order.pay!
+      redirect_to root_path, notice: "付款成功"
+    else
+      redirect_to orders_path, alert: '付款失敗'
+    end
   end
 end

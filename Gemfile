@@ -23,6 +23,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'devise', '~> 4.2'
 # gem 'newebpay-turbo', '~> 0.2.5'
+gem 'aasm', '~> 4.11'
 gem 'dotenv', '~> 2.7', '>= 2.7.6'
 gem "font_awesome5_rails", "~> 1.5"
 gem 'pundit', '~> 2.2'
