@@ -3,6 +3,6 @@ class Book < ApplicationRecord
   validates :price, presence: true, numericality: { greater_than: 0 }
 
   belongs_to :user
-  has_many :book_orders
+  has_many :book_orders, dependent: :destroy
   has_many :orders, through: :book_orders
 end

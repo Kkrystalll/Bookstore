@@ -7,7 +7,7 @@
 <% end %>
 
 
-<%= form_with(model: @coupon) do |coupon| %>
+<%= form_with(model: @coupon, url: admin_coupons_path) do |coupon| %>
   <div>
     <%= coupon.label :title, "折價名稱" %>
     <%= coupon.text_field :title, autocomplete: :off  %>

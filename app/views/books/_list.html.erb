@@ -3,16 +3,7 @@
   <%= book.price %>
   
   <%= link_to '加入訂單', "#", data: { controller: "order", action: "click->order#add_to_cart", "book-id": book.id, "user-id": current_user.id } %>
-  
-  <% if policy(:book).edit? %>
-    <%= link_to '修改', edit_book_path(book) %>
-    <%= link_to '刪除', book_path(book), method: :delete, data: {confirm: "您確定嗎？刪除不可復原"} %>
-  <% end %>
   <br>
 <% end %>
 
-<% if policy(:book).new? %>
-  <%= link_to '新增書', new_book_path %>
-  <%= link_to '新增折價卷', new_admin_coupon_path %>
-<% end %>
 <%= link_to '我的訂單', orders_path %>

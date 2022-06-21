@@ -4,7 +4,7 @@
   <% end %>
 <% end %>
 
-<%= form_with(model: book) do |form| %>
+<%= form_with(model: book, url: admin_book_path(book)) do |form| %>
   <div>
     <%= form.label :title, "書名" %>
     <%= form.text_field :title, autocomplete: :off %>

@@ -3,7 +3,7 @@ class Coupon < ApplicationRecord
   validates :discount_method, presence: true
   validates :piece, presence: true, numericality: { greater_than: 0 }
 
-  belongs_to :order
+  belongs_to :order, optional: true
   has_many :user_coupons
   has_many :users, through: :user_coupons
 
