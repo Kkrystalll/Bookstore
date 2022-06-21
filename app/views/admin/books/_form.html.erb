@@ -10,6 +10,10 @@
     <%= form.text_field :title, autocomplete: :off %>
   </div>
   <div>
+    <%= form.label :discription, "書詳細資訊" %>
+    <%= form.text_area :discription %>
+  </div>
+  <div>
     <%= form.label :price, "售價" %>
     <%= form.number_field :price %>
   </div>

@@ -45,7 +45,7 @@ class Admin::BooksController < ApplicationController
 
   private
   def book_params
-    params.require(:book).permit(:title, :price)
+    params.require(:book).permit(:title, :discription, :price)
   end
 
   def find_book

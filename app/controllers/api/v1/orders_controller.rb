@@ -6,7 +6,12 @@ class Api::V1::OrdersController < ApplicationController
     order = user.orders.find_by(status: "pended")
 
     if order
-      order.books << book
+      if order.books.find_by(id: params[:book_id])
+        # book.update(quantity: book.quantity+1)
+        # order.books.where(id: 1).count
+      else
+        order.books << book
+      end
     else
       user.orders.create
       order.books << book

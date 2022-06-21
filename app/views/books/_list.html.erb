@@ -1,5 +1,6 @@
 <% book.each do |book| %>
   <%= book.title %>
+  <%= book.discription %>
   <%= book.price %>
   
   <%= link_to '加入訂單', "#", data: { controller: "order", action: "click->order#add_to_cart", "book-id": book.id, "user-id": current_user.id } %>
