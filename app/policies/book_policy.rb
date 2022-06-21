@@ -1,6 +1,6 @@
 class BookPolicy < ApplicationPolicy
   def index?
-    buyer || seller || admin
+    buyer || admin
   end
 
   def new?
@@ -8,7 +8,7 @@ class BookPolicy < ApplicationPolicy
   end
 
   def create?
-    seller || admin
+    admin
   end
 
   def edit?
@@ -16,11 +16,11 @@ class BookPolicy < ApplicationPolicy
   end
 
   def update?
-    seller || admin
+    admin
   end
 
   def destroy?
-    seller || admin
+    admin
   end
 
   class Scope < Scope

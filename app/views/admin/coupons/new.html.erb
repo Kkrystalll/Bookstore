@@ -1,0 +1,33 @@
+<h1>新增折價卷</h1>
+
+<% if @coupon.errors.any? %>
+  <% @coupon.errors.full_messages.each do |message| %>
+    <p><%= message %></p>
+  <% end %>
+<% end %>
+
+
+<%= form_with(model: @coupon) do |coupon| %>
+  <div>
+    <%= coupon.label :title, "折價名稱" %>
+    <%= coupon.text_field :title, autocomplete: :off  %>
+  </div>
+  <div>
+    <%= coupon.label :discount_method, "折扣方法" %>
+    <%= coupon.select :discount_method,options_for_select(Coupon.discount_method_select, selected: coupon.object.discount_method),{} %>
+  </div>
+  <div>
+    <%= coupon.label :piece, "可使用張數" %>
+    <%= coupon.number_field :piece, min: 1 %>
+  </div>
+  <div>
+    <%= coupon.label :start_date, "折價開始時間" %>
+    <%= coupon.datetime_field :start_date, min: Date.today %>
+  </div>
+  <div>
+    <%= coupon.label :expiry_date, "折價到期時間" %>
+    <%= coupon.datetime_field :expiry_date %>
+  </div>
+
+  <%= coupon.submit "新增折價卷" %>
+<% end %>

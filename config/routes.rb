@@ -7,6 +7,15 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :admin do
+    resources :books, except: [:show ] do
+
+    end
+    resources :coupons, only: [:index, :new, :create ] do
+
+    end
+  end
+
   resources :books, except: [:show ]
   resources :coupons, only: [:index, :new, :create ]
   

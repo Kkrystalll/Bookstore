@@ -1,6 +1,6 @@
 class CouponPolicy < ApplicationPolicy
   def index?
-    seller || admin
+    admin
   end
 
   def new?
@@ -8,6 +8,6 @@ class CouponPolicy < ApplicationPolicy
   end
 
   def create?
-    seller || admin
+    admin
   end
 end

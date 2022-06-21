@@ -8,6 +8,19 @@
 # Additional translations at https://github.com/plataformatec/devise/wiki/I18n
 
 zh-TW:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              too_short: "密碼不能短於六碼"
+              blank: "不能為空"
+            email:
+              taken: "已被註冊過"
+              blank: "不能為空"
+            password_confirmation:
+              confirmation: "驗證不合"
   devise:
     confirmations:
       confirmed: "您的帳號已通過驗證，現在您已成功登入。"

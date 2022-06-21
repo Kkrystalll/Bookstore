@@ -8,4 +8,8 @@ class User < ApplicationRecord
   has_many :books
   has_many :user_coupons
   has_many :coupons, through: :user_coupons
+
+  def admin?
+    self.role == "admin"
+  end
 end

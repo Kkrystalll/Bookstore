@@ -1,5 +1,8 @@
 <nav class="navbar">
-  <%= link_to 'Bookstore', root_path, class: "logo" %>
+  <div class="flex items-center">
+    <%= link_to 'Bookstore', root_path, class: "logo" %>
+    <%= link_to '進入後台', admin_books_path, class: "nav-button" %>
+  </div>
   <% if current_user %>
     <div>
     <%= link_to('登出', destroy_user_session_path, :method => :delete, class: "nav-button") %> 

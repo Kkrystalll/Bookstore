@@ -61,8 +61,4 @@ class ApplicationPolicy
     user && user.role == 'user'
   end
 
-  def seller
-    user && user.role == 'seller'
-  end
-
 end

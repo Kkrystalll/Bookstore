@@ -7,40 +7,40 @@ class BooksController < ApplicationController
     @books = Book.all
   end
   
-  def new
-    authorize :book
-    @book = current_user.books.new
-  end
+  # def new
+  #   authorize :book
+  #   @book = current_user.books.new
+  # end
   
-  def create
-    authorize :book
-    @book = current_user.books.new(book_params)
+  # def create
+  #   authorize :book
+  #   @book = current_user.books.new(book_params)
 
-    if @book.save
-      redirect_to books_path, notice: "新增成功"
-    else
-      render :new
-    end
-  end
+  #   if @book.save
+  #     redirect_to books_path, notice: "新增成功"
+  #   else
+  #     render :new
+  #   end
+  # end
   
-  def edit
-    authorize :book
-  end
+  # def edit
+  #   authorize :book
+  # end
   
-  def update
-    authorize :book
-    if @book.update(book_params)
-      redirect_to books_path, notice: "修改成功"
-    else
-      render :edit
-    end
-  end
+  # def update
+  #   authorize :book
+  #   if @book.update(book_params)
+  #     redirect_to books_path, notice: "修改成功"
+  #   else
+  #     render :edit
+  #   end
+  # end
   
-  def destroy
-    authorize :book
-    @book.destroy
-    redirect_to books_path, notice: "刪除成功"
-  end
+  # def destroy
+  #   authorize :book
+  #   @book.destroy
+  #   redirect_to books_path, notice: "刪除成功"
+  # end
 
   private
   def book_params
