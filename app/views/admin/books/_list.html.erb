@@ -15,5 +15,6 @@
 <% if policy(:book).new? %>
   <%= link_to '新增書', new_admin_book_path %>
   <%= link_to '新增折價卷', new_admin_coupon_path %>
+  <%= link_to "折價卷一覽", admin_coupons_path %>
 <% end %>
 <%= link_to '我的訂單', orders_path %>

@@ -20,6 +20,12 @@ class Admin::CouponsController < ApplicationController
     end
   end
 
+  def destroy
+    @coupon = Coupon.find(params[:id])
+    @coupon.destroy
+    redirect_to admin_coupons_path, alert: "刪除成功"
+  end
+
   private
   def coupon_params
     params.require(:coupon).permit(:title, :start_date, :expiry_date, :discount_method, :piece)

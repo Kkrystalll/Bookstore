@@ -15,10 +15,10 @@
   <% end %>
   </table>
 <%= link_to '繼續選購', root_path %>
-<% @coupons.each do |coupon| %>
-  <p><%= coupon.title %></p>
-<% end %>
-<h2 data-order-target="totel">總計：＄<%= @amount %>元</h2>
+<br>
+<%= label_tag :coupon, "使用折價卷" %>
+<%= select_tag :coupon, options_from_collection_for_select(@coupons, :id, :title), prompt: "請選擇", data: { action: "order#select_coupon", "order-id": @order.id } %>
+<h2 data-order-target="totel">總計：＄<%= @order.amount %>元</h2>
 
 <%= form_with(url:"https://ccore.newebpay.com/MPG/mpg_gateway", method: :post) do |form| %>
   <%= form.hidden_field :MerchantID , value: @form_info[:MerchantID] %>

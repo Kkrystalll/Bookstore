@@ -14,6 +14,7 @@
     <td><%= coupon.piece %></td>
     <td><%= coupon.start_date %></td>
     <td><%= coupon.expiry_date %></td>
+    <td><%= link_to '刪除折價卷', admin_coupon_path(coupon.id), method: :delete, data: {confirm: "您確定嗎？刪除不可復原"} %></td>
   </tr>
   <% end %>
   </table>

@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :orders
   has_many :books
   has_many :user_coupons
-  has_many :coupons, through: :user_coupons
+  has_many :coupons, through: :user_coupons, dependent: :destroy
 
   def admin?
     self.role == "admin"

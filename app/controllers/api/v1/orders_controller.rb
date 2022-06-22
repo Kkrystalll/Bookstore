@@ -32,4 +32,18 @@ class Api::V1::OrdersController < ApplicationController
       params: params
     }
   end
+
+  def select_coupon
+    order = Order.find(params[:id])
+    coupon = Coupon.find(params[:coupon_id])
+    origin_amount = order.books.pluck(:price).sum
+    amount = order.price_calculation(coupon.discount_method, origin_amount)
+    order.update(amount: amount, coupon_id: params[:coupon_id])
+
+    render json: {
+      message: "折價卷選擇成功",
+      coupon: coupon,
+      amount: amount,
+    }
+  end
 end

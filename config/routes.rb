@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :books, except: [:show ] do
 
     end
-    resources :coupons, only: [:index, :new, :create ] do
+    resources :coupons, only: [:index, :new, :create, :destroy] do
 
     end
   end
@@ -29,6 +29,7 @@ Rails.application.routes.draw do
 
         member do
           delete :remove_to_cart
+          patch :select_coupon
         end
       end
     end

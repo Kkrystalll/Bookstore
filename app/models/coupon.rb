@@ -5,7 +5,7 @@ class Coupon < ApplicationRecord
 
   belongs_to :order, optional: true
   has_many :user_coupons
-  has_many :users, through: :user_coupons
+  has_many :users, through: :user_coupons, dependent: :destroy
 
   enum discount_method: { 請選折折扣: 0, 九折: 1, 八折: 2, 七折: 3, 折抵20元: 4, 折抵100元: 5 }
 

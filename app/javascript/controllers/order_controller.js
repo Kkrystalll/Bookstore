@@ -77,4 +77,40 @@ export default class extends Controller {
       },
     })
   }
+
+  select_coupon(e) {
+    const { orderId } = e.target.dataset
+    const couponId = e.target.value
+
+    const data = new FormData()
+    data.append("coupon_id", couponId)
+
+    Rails.ajax({
+      type: "patch",
+      url: `/api/v1/orders/${orderId}/select_coupon`,
+      data,
+      success: ({ message, amount, coupon }) => {
+        const selectedOption = e.target.querySelector(`option[value="${coupon.id}"]`)
+        selectedOption.setAttribute("selected", "selected")
+
+        this.totelTarget.textContent = `總計：＄${amount}元`
+
+        const header = document.querySelector(".header")
+        header.insertAdjacentHTML(
+          "afterend",
+          `<div
+        data-controller="notification"
+        class="notice hidden"
+        data-notification-delay-value="5000"
+        data-transition-enter-from="opacity-0 translate-x-6"
+        data-transition-enter-to="opacity-100 translate-x-0"
+        data-transition-leave-from="opacity-100 translate-x-0"
+        data-transition-leave-to="opacity-0 translate-x-6">
+          <p id="notice"><i class="fas fa-dollar-sign"></i>${coupon.discount_method}${message}</p>
+          <button data-action="notification#hide" class="notice-button"><i class="fas fa-times-circle"></i></button>
+        </div>`
+        )
+      },
+    })
+  }
 }

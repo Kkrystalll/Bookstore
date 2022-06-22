@@ -21,4 +21,19 @@ class Order < ApplicationRecord
   #     arr.push({title: book.first, price: book.last, count: count})
   #   end
   # end
+
+  def price_calculation(discount_method, amount)
+    case discount_method
+    when "九折"
+      amount * 0.9
+    when "八折"
+      amount * 0.8
+    when "七折"
+      amount * 0.7
+    when "折抵20元"
+      amount - 20
+    when "折抵100元"
+      amount - 100
+    end
+  end
 end

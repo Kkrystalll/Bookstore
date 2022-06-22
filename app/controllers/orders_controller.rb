@@ -13,8 +13,8 @@ class OrdersController < ApplicationController
     end
 
     @books = @order.books
-    @amount = @books.pluck(:price).sum
-    @order.update(amount: @amount)
+    amount = @books.pluck(:price).sum
+    # @order.update(amount: amount)
     @coupons = Coupon.all
     
     @form_info = Newebpay::Mpg.new(@order).form_info
