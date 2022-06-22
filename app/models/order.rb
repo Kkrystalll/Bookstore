@@ -14,4 +14,11 @@ class Order < ApplicationRecord
       transitions from: :pended, to: :paid
     end
   end
+
+  # def order_content(order_information)
+  #   order_information.each_with_object([]) do |element,arr|
+  #     book, count = element
+  #     arr.push({title: book.first, price: book.last, count: count})
+  #   end
+  # end
 end

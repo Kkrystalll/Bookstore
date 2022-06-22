@@ -5,4 +5,5 @@ class Book < ApplicationRecord
   belongs_to :user
   has_many :book_orders, dependent: :destroy
   has_many :orders, through: :book_orders
+
 end

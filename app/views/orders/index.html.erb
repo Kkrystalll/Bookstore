@@ -3,13 +3,14 @@
   <table>
   <tr>
     <td>書名</td>
-    <td>價錢</td>
+    <td>單價</td>
+    <td>數量</td>
   </tr>
-  <% @books.each do |book| %>
+  <% @current_order.pluck(:title, :id, :price, :count).each do |title, id, price, count| %>
   <tr class="book_order">
-    <td><%= book.title %></td>
-    <td><%= book.price %></td>
-    <td><button data-action="click->order#remove_to_cart" data-book-id="<%= book.id %>" data-order-id="<%= @order.id %>" data-book-price="<%= book.price %>">移除訂單</button></td> 
+    <td><%= title %></td>
+    <td><%= price %></td>
+    <td class="count"><i class="fas fa-plus mr-2" data-action="click->order#add_to_cart" data-book-id="<%= id %>" data-order-id="<%= @order.id %>" data-user-id="<%= current_user.id %>" data-book-price="<%= price %>"></i><%= count %><i class="fas fa-minus ml-2" data-action="click->order#remove_to_cart" data-book-id="<%= id %>" data-order-id="<%= @order.id %>" data-book-price="<%= price %>"></i></td>
   </tr>
   <% end %>
   </table>

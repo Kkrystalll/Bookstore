@@ -69,6 +69,7 @@ export default class extends Controller {
             <button data-action="notification#hide" class="notice-button"><i class="fas fa-times-circle"></i></button>
           </div>`
         )
+
         const originAmount = this.totelTarget.textContent.slice(4, -1)
         const removeBookPrice = e.target.dataset.bookPrice
 
