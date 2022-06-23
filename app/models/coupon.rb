@@ -26,8 +26,8 @@ class Coupon < ApplicationRecord
   end
 
   after_find do |coupon|
-    coupon.publish if coupon.preparing? && coupon.start_date <= Time.now
-    coupon.expiry if coupon.publishing? && coupon.expiry_date? && Time.now >= coupon.expiry_date
+    coupon.publish! if coupon.preparing? && coupon.start_date <= Time.now
+    coupon.expiry! if coupon.publishing? && coupon.expiry_date? && Time.now >= coupon.expiry_date
   end
 
   def self.discount_method_select

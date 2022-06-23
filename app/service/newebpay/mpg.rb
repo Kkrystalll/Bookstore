@@ -38,7 +38,7 @@ module Newebpay
       info[:TimeStamp] = Time.now.to_i
       info[:RespondType] = 'JSON'
       info[:Version] = '2.0'
-      info[:ReturnURL] = "https://#{ENV.fetch('NGROK_HOST_NAME', nil)}/orders/return_response"
+      info[:ReturnURL] = "https://#{ENV.fetch('HEROKU', nil)}/orders/return_response"
       info[:NotifyURL] = ''
       info[:LoginType] = 0
       info[:CREDIT] =  1

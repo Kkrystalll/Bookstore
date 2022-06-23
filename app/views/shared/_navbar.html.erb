@@ -4,8 +4,8 @@
     <% if policy(:book).new? %>
       <%= link_to '進入後台', admin_books_path, class: "nav-button" %>
     <% end %>
-    <% if current_user %>
-      <%= link_to '我的訂單', orders_path, class: "my-order" %>
+    <% if current_user && current_user.orders.find_by(status: 'pended') %>
+      <%= link_to '我的訂單', orders_path, class:"my-order" %>
     <% end %>
   </div>
   <% if current_user %>
