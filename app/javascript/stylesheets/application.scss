@@ -3,6 +3,7 @@
 @import "tailwindcss/utilities";
 @import "./form.scss";
 @import "./navbar.scss";
+@import "./book.scss";
 
 .notice {
   @apply absolute top-24 right-5 flex items-center bg-grassGreen py-2 px-4 rounded text-white hover:bg-mint transition transform duration-1000;

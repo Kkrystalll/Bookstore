@@ -40,6 +40,23 @@ export default class extends Controller {
 
         this.totelTarget.textContent = `總計：＄${amount}元`
       },
+      error: () => {
+        const header = document.querySelector(".header")
+        header.insertAdjacentHTML(
+          "afterend",
+          `<div
+          data-controller="notification"
+          class="alert hidden"
+          data-notification-delay-value="5000"
+          data-transition-enter-from="opacity-0 translate-x-6"
+          data-transition-enter-to="opacity-100 translate-x-0"
+          data-transition-leave-from="opacity-100 translate-x-0"
+          data-transition-leave-to="opacity-0 translate-x-6">
+            <p id="alert">加入訂單失敗</p>
+            <button data-action="notification#hide" class="notice-button"><i class="fas fa-times-circle"></i></button>
+          </div>`
+        )
+      },
     })
   }
 
@@ -59,16 +76,16 @@ export default class extends Controller {
         header.insertAdjacentHTML(
           "afterend",
           `<div
-          data-controller="notification"
-          class="alert hidden"
-          data-notification-delay-value="5000"
-          data-transition-enter-from="opacity-0 translate-x-6"
-          data-transition-enter-to="opacity-100 translate-x-0"
-          data-transition-leave-from="opacity-100 translate-x-0"
-          data-transition-leave-to="opacity-0 translate-x-6">
-            <p id="alert">${message}</p>
-            <button data-action="notification#hide" class="notice-button"><i class="fas fa-times-circle"></i></button>
-          </div>`
+        data-controller="notification"
+        class="notice hidden"
+        data-notification-delay-value="5000"
+        data-transition-enter-from="opacity-0 translate-x-6"
+        data-transition-enter-to="opacity-100 translate-x-0"
+        data-transition-leave-from="opacity-100 translate-x-0"
+        data-transition-leave-to="opacity-0 translate-x-6">
+          <p id="notice">${message}</p>
+          <button data-action="notification#hide" class="notice-button"><i class="fas fa-times-circle"></i></button>
+        </div>`
         )
 
         const count = e.target.closest(".book_order").querySelector(".count")
@@ -79,6 +96,23 @@ export default class extends Controller {
         }
 
         this.totelTarget.textContent = `總計：＄${amount}元`
+      },
+      error: () => {
+        const header = document.querySelector(".header")
+        header.insertAdjacentHTML(
+          "afterend",
+          `<div
+          data-controller="notification"
+          class="alert hidden"
+          data-notification-delay-value="5000"
+          data-transition-enter-from="opacity-0 translate-x-6"
+          data-transition-enter-to="opacity-100 translate-x-0"
+          data-transition-leave-from="opacity-100 translate-x-0"
+          data-transition-leave-to="opacity-0 translate-x-6">
+            <p id="alert">移除訂單失敗</p>
+            <button data-action="notification#hide" class="notice-button"><i class="fas fa-times-circle"></i></button>
+          </div>`
+        )
       },
     })
   }

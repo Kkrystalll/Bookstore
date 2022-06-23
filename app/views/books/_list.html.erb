@@ -1,10 +1,16 @@
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
 <% book.each do |book| %>
-  <%= book.title %>
-  <%= book.discription %>
-  <%= book.price %>
-  
-  <%= link_to '加入訂單', "#", data: { controller: "order", action: "click->order#add_to_cart", "book-id": book.id, "user-id": current_user.id } %>
-  <br>
+  <div class="m-2 transition-all duration-200 transform border border-gray-400 rounded-lg cursor-pointer card hover:shadow-md hover:border-opacity-1 hover:-translate-y-1">
+    <div class="m-3">
+      <h2 class="text-2xl mb-2 truncate"><%= book.title %></h2>
+      <div class="h-20">
+        <p class="font-light font-mono text-sm mt-6 text-gray-700 hover:text-gray-900 transition-all duration-200 toro "><%= book.discription %></p> 
+      </div>
+      <div class="mt-5 flex justify-between items-center">
+        <h3 class="text-2xl font-bold">NT$<%= book.price %></h3>
+        <%= link_to '加入訂單', "#", data: { controller: "order", action: "click->order#add_to_cart", "book-id": book.id, "user-id": current_user.id }, class: "add-button" %>
+      </div>
+    </div>
+  </div>
 <% end %>
-
-<%= link_to '我的訂單', orders_path %>
+</div>
