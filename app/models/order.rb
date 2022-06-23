@@ -34,6 +34,16 @@ class Order < ApplicationRecord
       amount - 20
     when "折抵100元"
       amount - 100
+    when "折抵300元"
+      amount - 300
+    end
+  end
+
+  def positive_amount(amount)
+    if amount >= 0
+      amount
+    else
+      amount = 0
     end
   end
 end

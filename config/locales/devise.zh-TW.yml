@@ -26,6 +26,7 @@ zh-TW:
             price:
               blank: "價格不能為空"
               not_a_number: "價格須為數字"
+              greater_than: "價格須為正數"
             title:
               blank: "書名不得為空"
         coupon:

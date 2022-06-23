@@ -4,6 +4,7 @@
     <td>折價名稱</td>
     <td>折扣方法</td>
     <td>可使用張數</td>
+    <td>狀態</td>
     <td>開啟時間</td>
     <td>關閉時間</td>
   </tr>
@@ -12,6 +13,7 @@
     <td><%= coupon.title %></td>
     <td><%= coupon.discount_method %></td>
     <td><%= coupon.piece %></td>
+    <td><%= coupon.status %></td>
     <td><%= coupon.start_date %></td>
     <td><%= coupon.expiry_date %></td>
     <td><%= link_to '刪除折價卷', admin_coupon_path(coupon.id), method: :delete, data: {confirm: "您確定嗎？刪除不可復原"} %></td>
