@@ -4,20 +4,24 @@
   <tr>
     <td>書名</td>
     <td>單價</td>
+    <td></td>
     <td>數量</td>
+    <td></td>
   </tr>
   <% @current_order.pluck(:title, :id, :price, :count).each do |title, id, price, count| %>
   <tr class="book_order">
     <td><%= title %></td>
     <td><%= price %></td>
-    <td class="count"><i class="fas fa-plus mr-2" data-action="click->order#add_to_cart" data-book-id="<%= id %>" data-order-id="<%= @order.id %>" data-user-id="<%= current_user.id %>" data-book-price="<%= price %>"></i><%= count %><i class="fas fa-minus ml-2" data-action="click->order#remove_to_cart" data-book-id="<%= id %>" data-order-id="<%= @order.id %>" data-book-price="<%= price %>"></i></td>
+    <td><i class="fas fa-plus mr-2" data-action="click->order#add_to_cart" data-book-id="<%= id %>" data-order-id="<%= @order.id %>" data-user-id="<%= current_user.id %>" data-book-price="<%= price %>"></i></td>
+    <td class="count"><%= count %></td>
+    <td><i class="fas fa-minus ml-2" data-action="click->order#remove_to_cart" data-book-id="<%= id %>" data-order-id="<%= @order.id %>" data-book-price="<%= price %>"></i></td>
   </tr>
   <% end %>
   </table>
 <%= link_to '繼續選購', root_path %>
 <br>
 <%= label_tag :coupon, "使用折價卷" %>
-<%= select_tag :coupon, options_from_collection_for_select(@coupons, :id, :title), prompt: "請選擇", data: { action: "order#select_coupon", "order-id": @order.id } %>
+<%= select_tag :coupon, options_from_collection_for_select(@coupons, :id, :title, @order.coupon_id), prompt: "請選擇", data: { action: "order#select_coupon", "order-id": @order.id } %>
 <h2 data-order-target="totel">總計：＄<%= @order.amount %>元</h2>
 
 <%= form_with(url:"https://ccore.newebpay.com/MPG/mpg_gateway", method: :post) do |form| %>

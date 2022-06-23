@@ -18,7 +18,7 @@ export default class extends Controller {
       type: "post",
       url: "/api/v1/orders/add_to_cart",
       data,
-      success: ({ message }) => {
+      success: ({ message, amount }) => {
         const header = document.querySelector(".header")
         header.insertAdjacentHTML(
           "afterend",
@@ -34,9 +34,11 @@ export default class extends Controller {
           <button data-action="notification#hide" class="notice-button"><i class="fas fa-times-circle"></i></button>
         </div>`
         )
-      },
-      error: (err) => {
-        console.log(err)
+
+        const count = e.target.closest(".book_order").querySelector(".count")
+        count.textContent = Number(count.textContent) + Number(1)
+
+        this.totelTarget.textContent = `總計：＄${amount}元`
       },
     })
   }
@@ -52,8 +54,7 @@ export default class extends Controller {
       type: "delete",
       url: `/api/v1/orders/${orderId}/remove_to_cart`,
       data,
-      success: ({ message }) => {
-        e.target.closest(".book_order").classList.add("hidden")
+      success: ({ message, amount }) => {
         const header = document.querySelector(".header")
         header.insertAdjacentHTML(
           "afterend",
@@ -70,10 +71,14 @@ export default class extends Controller {
           </div>`
         )
 
-        const originAmount = this.totelTarget.textContent.slice(4, -1)
-        const removeBookPrice = e.target.dataset.bookPrice
+        const count = e.target.closest(".book_order").querySelector(".count")
+        count.textContent = Number(count.textContent) - Number(1)
 
-        this.totelTarget.textContent = `總計：＄${originAmount - removeBookPrice}元`
+        if (count.textContent == 0) {
+          e.target.closest(".book_order").classList.add("hidden")
+        }
+
+        this.totelTarget.textContent = `總計：＄${amount}元`
       },
     })
   }

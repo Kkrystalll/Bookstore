@@ -12,19 +12,40 @@ class Api::V1::OrdersController < ApplicationController
       order.books << book
     end
 
+    coupon = Coupon.find_by(id: order.coupon_id)
+    origin_amount = order.books.pluck(:price).sum
+    if coupon 
+      discount_amount = order.price_calculation(coupon.discount_method, origin_amount)
+      amount = order.positive_amount(discount_amount)
+    else
+      amount = origin_amount
+    end
+    order.update(amount: amount)
+
     render json: {
       message: '加入訂單成功！',
-      params: params
+      params: params,
+      amount: amount,
     }
   end
 
   def remove_to_cart
     order = Order.find(params[:id])
     order.book_orders.find_by(book_id: params[:book_id]).destroy
+    coupon = Coupon.find_by(id: order.coupon_id)
+    origin_amount = order.books.pluck(:price).sum
+    if coupon 
+      discount_amount = order.price_calculation(coupon.discount_method, origin_amount)
+      amount = order.positive_amount(discount_amount)
+    else
+      amount = origin_amount
+    end
+    order.update(amount: amount)
 
     render json: {
       message: '移除訂單成功！',
-      params: params
+      params: params,
+      amount: amount,
     }
   end
 

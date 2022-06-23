@@ -38,11 +38,15 @@ class Coupon < ApplicationRecord
     discount_methods.keys.map { |key| [key, key] }
   end
 
-  def self.all_status
-    [
-      %w[發佈 published],
-      %w[到期 expired]
-    ]
+  def coupon_status(status)
+    case status
+    when "preparing"
+      status = "未開放"
+    when "publishing"
+      status = "開放"
+    when "expired"
+      status = "已到期"
+    end
   end
 
 end

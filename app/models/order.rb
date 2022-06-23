@@ -15,13 +15,6 @@ class Order < ApplicationRecord
     end
   end
 
-  # def order_content(order_information)
-  #   order_information.each_with_object([]) do |element,arr|
-  #     book, count = element
-  #     arr.push({title: book.first, price: book.last, count: count})
-  #   end
-  # end
-
   def price_calculation(discount_method, amount)
     case discount_method
     when "九折"
