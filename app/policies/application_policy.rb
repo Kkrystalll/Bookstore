@@ -60,5 +60,4 @@ class ApplicationPolicy
   def buyer
     user && user.role == 'user'
   end
-
 end

@@ -1,24 +1,18 @@
 Rails.application.routes.draw do
-  
   devise_for :users
-  resources :orders, only: [:index ] do
+  resources :orders, only: [:index] do
     collection do
       post :return_response
     end
   end
 
   namespace :admin do
-    resources :books, except: [:show ] do
-
-    end
-    resources :coupons, only: [:index, :new, :create, :destroy] do
-
-    end
+    resources :books, except: [:show]
+    resources :coupons, only: %i[index new create destroy]
   end
 
-  resources :books, only: [:index ]
+  resources :books, only: [:index]
   # resources :coupons, only: [:index, :new, :create ]
-  
 
   namespace :api do
     namespace :v1 do
@@ -35,5 +29,5 @@ Rails.application.routes.draw do
     end
   end
 
-  root "books#index"
+  root 'books#index'
 end

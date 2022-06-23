@@ -3,9 +3,9 @@ module Newebpay
     attr_accessor :info
 
     def initialize(params)
-      @key = ENV["HashKey"]
-      @iv = ENV["HashIV"]
-      @merchant_id = ENV["merchantID"]
+      @key = ENV.fetch('HashKey', nil)
+      @iv = ENV.fetch('HashIV', nil)
+      @merchant_id = ENV.fetch('merchantID', nil)
       @info = {}  # 使用 attr_accessor 讓 info 方便存取
       set_info(params)
     end
@@ -15,7 +15,7 @@ module Newebpay
         MerchantID: @merchant_id,
         TradeInfo: trade_info,
         TradeSha: trade_sha,
-        Version: "2.0"
+        Version: '2.0'
       }
     end
 
@@ -29,18 +29,18 @@ module Newebpay
       sha256_encode(@key, @iv, trade_info)
     end
 
-    def set_info(order)  
+    def set_info(order)
       info[:MerchantID] = @merchant_id
       info[:MerchantOrderNo] = order.id
-      info[:Amt] = order.amount 
+      info[:Amt] = order.amount
       info[:ItemDesc] = order.id
-      info[:Email] = "krystal93002232@gmail.com"
-      info[:TimeStamp] = Time.now.to_i 
-      info[:RespondType] = "JSON"
-      info[:Version] = "2.0"
-      info[:ReturnURL] = "https://#{ENV["NGROK_HOST_NAME"]}/orders/return_response"
-      info[:NotifyURL] = ""
-      info[:LoginType] = 0 
+      info[:Email] = 'krystal93002232@gmail.com'
+      info[:TimeStamp] = Time.now.to_i
+      info[:RespondType] = 'JSON'
+      info[:Version] = '2.0'
+      info[:ReturnURL] = "https://#{ENV.fetch('NGROK_HOST_NAME', nil)}/orders/return_response"
+      info[:NotifyURL] = ''
+      info[:LoginType] = 0
       info[:CREDIT] =  1
       info[:VACC] = 1
     end
@@ -50,14 +50,14 @@ module Newebpay
     end
 
     def aes_encode(string)
-      cipher = OpenSSL::Cipher::AES256.new(:CBC)
+      cipher = OpenSSL::Cipher.new('aes-256-cbc')
       cipher.encrypt
       cipher.key = @key
       cipher.iv = @iv
       cipher.padding = 0
       padding_data = add_padding(string)
       encrypted = cipher.update(padding_data) + cipher.final
-      encrypted.unpack('H*').first
+      encrypted.unpack1('H*')
     end
 
     def add_padding(data, block_size = 32)

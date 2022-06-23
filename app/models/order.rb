@@ -6,7 +6,7 @@ class Order < ApplicationRecord
   has_many :book_orders
   has_many :books, through: :book_orders
 
-  aasm column: "status" do
+  aasm column: 'status' do
     state :pended, initial: true
     state :paid
 
@@ -17,17 +17,17 @@ class Order < ApplicationRecord
 
   def price_calculation(discount_method, amount)
     case discount_method
-    when "九折"
+    when '九折'
       amount * 0.9
-    when "八折"
+    when '八折'
       amount * 0.8
-    when "七折"
+    when '七折'
       amount * 0.7
-    when "折抵20元"
+    when '折抵20元'
       amount - 20
-    when "折抵100元"
+    when '折抵100元'
       amount - 100
-    when "折抵300元"
+    when '折抵300元'
       amount - 300
     end
   end

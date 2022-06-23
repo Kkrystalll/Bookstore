@@ -11,7 +11,7 @@ class Coupon < ApplicationRecord
 
   enum discount_method: { 九折: 1, 八折: 2, 七折: 3, 折抵20元: 4, 折抵100元: 5, 折抵300元: 6 }
 
-  aasm column: "status" do
+  aasm column: 'status' do
     state :preparing, initial: true
     state :publishing
     state :expired
@@ -26,12 +26,8 @@ class Coupon < ApplicationRecord
   end
 
   after_find do |coupon|
-    if coupon.preparing? && coupon.start_date <= Time.now 
-      coupon.publish
-    end
-    if coupon.publishing? && coupon.expiry_date? && Time.now >= coupon.expiry_date
-      coupon.expiry
-    end 
+    coupon.publish if coupon.preparing? && coupon.start_date <= Time.now
+    coupon.expiry if coupon.publishing? && coupon.expiry_date? && Time.now >= coupon.expiry_date
   end
 
   def self.discount_method_select
@@ -40,14 +36,12 @@ class Coupon < ApplicationRecord
 
   def coupon_status(status)
     case status
-    when "preparing"
-      status = "未開放"
-    when "publishing"
-      status = "開放"
-    when "expired"
-      status = "已到期"
+    when 'preparing'
+      status = '未開放'
+    when 'publishing'
+      status = '開放'
+    when 'expired'
+      status = '已到期'
     end
   end
-
 end
-

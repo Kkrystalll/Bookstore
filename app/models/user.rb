@@ -10,6 +10,6 @@ class User < ApplicationRecord
   has_many :coupons, through: :user_coupons, dependent: :destroy
 
   def admin?
-    self.role == "admin"
+    role == 'admin'
   end
 end
