@@ -8,7 +8,7 @@
       </div>
       <div class="mt-5 flex justify-between items-center">
         <h3 class="text-2xl font-bold">NT$<%= book.price %></h3>
-        <%= link_to '加入訂單', "#", data: { controller: "order", action: "click->order#add_to_cart", "book-id": book.id, "user-id": current_user.id }, class: "add-button" %>
+        <%= link_to '加入訂單', "#", data: { controller: "order", action: "click->order#add_to_cart", "book-id": book.id, "user-id": current_user.id }, class: "default-button" %>
       </div>
     </div>
   </div>

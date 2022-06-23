@@ -1,35 +1,46 @@
-<h1 class="mt-4 py-4 md:pt-4 text-5xl text-center text-gray-700">我的訂單</h1>
+<div class="flex justify-between items-center px-6">
+  <%= link_to '繼續選購', root_path, class: "default-button" %>
+  <h1 class="mt-4 py-4 md:pt-4 text-5xl text-center text-gray-700">我的訂單</h1>
+  <div></div>
+</div>
 
-<section class="text-center min-w-min mx-auto w-5/6 md:w-4/6" data-controller="order" >
-  <table class="table-auto">
-  <tr class="border-2 rounded border-black">
-    <td class="border-2 rounded border-black">書名</td>
-    <td>單價</td>
-    <td></td>
-    <td>數量</td>
-    <td></td>
+<section class="relative overflow-x-auto sm:rounded-lg" data-controller="order" >
+  <table class="w-full text-xl text-left text-gray-500 dark:text-gray-400">
+  <thead class="text-xl text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+  <tr>
+    <th scope="col" class="px-6 py-3">書名</th>
+    <th scope="col" class="px-6 py-3 text-left">單價</th>
+    <th scope="col" class="px-6 py-3 text-left"><i class="fas fa-plus mr-2"></i></th>
+    <th scope="col" class="px-6 py-3 text-left">數量</th>
+    <th scope="col" class="px-6 py-3 text-left"><i class="fas fa-minus ml-2"></i></th>
   </tr>
+  </thead>
+  <tbody>
   <% @current_order.pluck(:title, :id, :price, :count).each do |title, id, price, count| %>
-  <tr class="book_order">
-    <td><%= title %></td>
-    <td><%= price %></td>
-    <td><i class="fas fa-plus mr-2" data-action="click->order#add_to_cart" data-book-id="<%= id %>" data-order-id="<%= @order.id %>" data-user-id="<%= current_user.id %>" data-book-price="<%= price %>"></i></td>
-    <td class="count"><%= count %></td>
-    <td><i class="fas fa-minus ml-2" data-action="click->order#remove_to_cart" data-book-id="<%= id %>" data-order-id="<%= @order.id %>" data-book-price="<%= price %>"></i></td>
+  <tr class="book_order bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"><%= title %></th>
+    <td class="px-6 py-4"><%= price %></td>
+    <td class="px-6 py-4"><i class="fas fa-plus mr-2" data-action="click->order#add_to_cart" data-book-id="<%= id %>" data-order-id="<%= @order.id %>" data-user-id="<%= current_user.id %>" data-book-price="<%= price %>"></i></td>
+    <td class="count px-6 py-4"><%= count %></td>
+    <td class="px-6 py-4"><i class="fas fa-minus ml-2" data-action="click->order#remove_to_cart" data-book-id="<%= id %>" data-order-id="<%= @order.id %>" data-book-price="<%= price %>"></i></td>
   </tr>
   <% end %>
+  </tbody>
   </table>
-<%= link_to '繼續選購', root_path %>
-<br>
-<%= label_tag :coupon, "使用折價卷" %>
-<%= select_tag :coupon, options_from_collection_for_select(@coupons, :id, :title, @order.coupon_id), prompt: "請選擇", data: { action: "order#select_coupon", "order-id": @order.id } %>
-<h2 data-order-target="totel">總計：＄<%= @order.amount %>元</h2>
+
+<div class="flex justify-between items-center px-6 mt-10">
+<div class="text-xl">
+    <%= label_tag :coupon, "使用折價卷" %>
+    <%= select_tag :coupon, options_from_collection_for_select(@coupons, :id, :title, @order.coupon_id), prompt: "請選擇", data: { action: "order#select_coupon", "order-id": @order.id } %>
+  </div>
+<h2 data-order-target="totel" class="text-2xl font-bold">總計：＄<%= @order.amount %>元</h2>
 
 <%= form_with(url:"https://ccore.newebpay.com/MPG/mpg_gateway", method: :post) do |form| %>
   <%= form.hidden_field :MerchantID , value: @form_info[:MerchantID] %>
   <%= form.hidden_field :TradeInfo , value: @form_info[:TradeInfo] %>
   <%= form.hidden_field :TradeSha , value: @form_info[:TradeSha]%>
   <%= form.hidden_field :Version , value: @form_info[:Version] %>
-  <%= form.submit "結帳囉～～～～～～～" %>
+  <%= form.submit "結帳囉～～～～～～～", class: "default-button" %>
 <% end %>
+</div>
 </section>
